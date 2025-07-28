@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "SheGuardPlus",
+    "name": "SheGuard+",
     "slug": "SheGuardPlus",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -16,14 +16,27 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.prasadankit79.SheGuardPlus"
     },
     "web": {
       "bundler": "metro",
       "output": "static",
       "favicon": "./assets/images/favicon.png"
     },
-    "plugins": [
+    "plugins": [[
+      "expo-image-picker",
+        {
+          "photosPermission": "The app accesses your photos to let you send them for analysis in the Help section.",
+          "cameraPermission": "The app accesses your camera to let you take and send photos for analysis in the Help section."
+        }
+      ],
+      [
+        "expo-av",
+        {
+          "microphonePermission": "The app accesses your microphone to let you record your voice for questions in the Help section."
+        }
+      ],
       "expo-router",
       [
         "expo-splash-screen",
@@ -37,6 +50,12 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "28d4385e-f75c-4498-872b-65af7a4a03e4"
+      }
     }
   }
 }
