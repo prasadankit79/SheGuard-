@@ -3,27 +3,36 @@ import { getFirestore } from 'firebase/firestore';
 import { initializeAuth, getReactNativePersistence } from 'firebase/auth';
 import ReactNativeAsyncStorage from '@react-native-async-storage/async-storage';
 
+// Import the keys securely from the .env file
+import { 
+    FIREBASE_API_KEY, 
+    FIREBASE_AUTH_DOMAIN, 
+    FIREBASE_PROJECT_ID, 
+    FIREBASE_STORAGE_BUCKET, 
+    FIREBASE_MESSAGING_SENDER_ID, 
+    FIREBASE_APP_ID 
+} from '@env';
 
+// Use the imported keys to build the config object
 const firebaseConfig = {
-  apiKey: "AIzaSyBT4qU4DIgeoE6RGgNzPGMhaADNj4YrDPo",
-  authDomain: "sheguard-af2a0.firebaseapp.com",
-  projectId: "sheguard-af2a0",
-  storageBucket: "sheguard-af2a0.firebasestorage.app",
-  messagingSenderId: "251631415071",
-  appId: "1:251631415071:web:469cb0ddc9f52c7cd90a2a",
-  measurementId: "G-M01YXVE82N"
+  apiKey: FIREBASE_API_KEY,
+  authDomain: FIREBASE_AUTH_DOMAIN,
+  projectId: FIREBASE_PROJECT_ID,
+  storageBucket: FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: FIREBASE_MESSAGING_SENDER_ID,
+  appId: FIREBASE_APP_ID
 };
 
-
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-
+// Initialize Auth with persistence
 const auth = initializeAuth(app, {
   persistence: getReactNativePersistence(ReactNativeAsyncStorage)
 });
 
-
+// This is a unique ID for the app instance, provided by the environment.
 const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-sheguard-app';
 
 export { auth, db, appId };
